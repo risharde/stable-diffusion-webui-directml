@@ -224,10 +224,10 @@ def run_extensions_installers(settings_file):
 
 def prepare_environment():
     if shutil.which('nvidia-smi') is not None:
-        torch_command = os.environ.get('TORCH_COMMAND', 'torch torchaudio torchvision torch-directml --index-url https://download.pytorch.org/whl/cu118')
+        torch_command = os.environ.get('TORCH_COMMAND', 'torch torchaudio torchvision --index-url https://download.pytorch.org/whl/cu118')
     elif shutil.which('rocminfo') is not None:
         os.environ.setdefault('HSA_OVERRIDE_GFX_VERSION', '10.3.0')
-        torch_command = os.environ.get('TORCH_COMMAND', 'torch torchvision torchaudio torch-directml --index-url https://download.pytorch.org/whl/rocm5.4.2')
+        torch_command = os.environ.get('TORCH_COMMAND', 'torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2')
     else:
         torch_command = os.environ.get('TORCH_COMMAND', "torch==2.0.0 torchvision==0.15.1 torch-directml")
     requirements_file = os.environ.get('REQS_FILE', "requirements_versions.txt")
